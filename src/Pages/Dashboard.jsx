@@ -8,7 +8,7 @@ import TradingViewWidget from "../Components/TradingViewWidget";
 import underReviewImg from "../assets/Images/under-review.png";
 
 // Import Deposit Modal
-import DepositModal from "../components/DepositModal";
+import DepositModal from "../Components/DepositModal";
 
 const Dashboard = () => {
   const { user, logout, loading: authLoading } = useContext(AuthContext);
