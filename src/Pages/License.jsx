@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 
 // Import all license seals
-import fincenSeal from "../assets/images/license/fincen-seal-removebg.png";
-import alabamaBankingSeal from "../assets/images/license/alabama-banking-seal-removebg.png";
-import alabamaSecuritiesSeal from "../assets/images/license/alabama-securities-seal.png";
-import arizonaSeal from "../assets/images/license/arizona-seal.png";
-import arkansasSeal from "../assets/images/license/arkansas-seal-removebg.png";
-import westVirginiaSeal from "../assets/images/license/west-virginia-seal.png";
-import wyomingSeal from "../assets/images/license/wyoming-seal.png";
-import fintracSeal from "../assets/images/license/fintrac-seal.webp";
-import sofitSeal from "../assets/images/license/sofit-seal.png";
-import asicSeal from "../assets/images/license/asic-seal.jpg";
+import fincenSeal from "../assets/Images/license/fincen-seal-removebg.png";
+import alabamaBankingSeal from "../assets/Images/license/alabama-banking-seal-removebg.png";
+import alabamaSecuritiesSeal from "../assets/Images/license/alabama-securities-seal.png";
+import arizonaSeal from "../assets/Images/license/arizona-seal.png";
+import arkansasSeal from "../assets/Images/license/arkansas-seal-removebg.png";
+import westVirginiaSeal from "../assets/Images/license/west-virginia-seal.png";
+import wyomingSeal from "../assets/Images/license/wyoming-seal.png";
+import fintracSeal from "../assets/Images/license/fintrac-seal.webp";
+import sofitSeal from "../assets/Images/license/sofit-seal.png";
+import asicSeal from "../assets/Images/license/asic-seal.jpg";
 
 const COINGECKO_KEY = import.meta.env.VITE_COINGECKO_KEY;
 

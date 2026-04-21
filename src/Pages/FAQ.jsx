@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 
 // Import images
-import faqHeroBg from "../assets/images/faq/faq-hero-bg.png";
+import faqHeroBg from "../assets/Images/faq/faq-hero-bg.png";
 
 const COINGECKO_KEY = import.meta.env.VITE_COINGECKO_KEY;
 
