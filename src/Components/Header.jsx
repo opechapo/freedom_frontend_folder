@@ -124,7 +124,7 @@ const Header = () => {
           {/* Hamburger - Black Color */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 text-black hover:text-gray-700"
+            className="md:hidden p-2 text-white hover:text-gray-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-slate-950 z-50 overflow-y-auto">
+        <div className="md:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
           <div className="container mx-auto px-6 py-6">
             <div className="flex justify-between items-center mb-10">
               <Link to="/" className="flex items-center" onClick={closeMenu}>
