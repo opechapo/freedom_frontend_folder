@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Import Logo Image
-import tradenixPro from "../assets/Images/tradenixPro.png";
+import tradenixPro from "../assets/Images/landingpage/tradenixpro.png";
 
 const Footer = () => {
   return (
