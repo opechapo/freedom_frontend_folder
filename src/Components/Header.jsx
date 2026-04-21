@@ -4,7 +4,7 @@ import { AuthContext } from "../Contexts/AuthContext";
 import { useTheme } from "../Themes/ThemeContext";
 
 // Import Logo Image
-import tradenixPro from "../assets/Images/";
+import tradenixPro from "../assets/Images/about/tradenixpro.png";
 
 const Header = () => {
   const { dark, toggle } = useTheme();
