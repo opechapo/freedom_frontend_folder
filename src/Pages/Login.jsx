@@ -9,7 +9,7 @@ import API from "../Utils/api";
 import { toast } from "react-toastify";
 
 // Import Login Illustration
-import loginIllustration from "../assets/images/landingpage/loginillstration.png";
+import loginIllustration from "../assets/images/landingpage/loginillustration.png";
 
 const schema = z.object({
   login: z.string().min(3, "Username or email is required"),
