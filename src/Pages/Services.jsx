@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 
 // Import images
-import servicesHeroBg from "../assets/images/services/services-hero-bg.png";
-import investIcon from "../assets/images/services/investment-icon.png";
-import cryptoIcon from "../assets/images/services/crypto-icon.png";
-import forexIcon from "../assets/images/services/forex-icon.png";
-import stockIcon from "../assets/images/services/stock-icon.png";
-import realEstateIcon from "../assets/images/services/real-estate-icon.png";
-import cannabisIcon from "../assets/images/services/cannabis-icon.png";
+import servicesHeroBg from "../assets/Images/services/services-hero-bg.png";
+import investIcon from "../assets/Images/services/investment-icon.png";
+import cryptoIcon from "../assets/Images/services/crypto-icon.png";
+import forexIcon from "../assets/Images/services/forex-icon.png";
+import stockIcon from "../assets/Images/services/stock-icon.png";
+import realEstateIcon from "../assets/Images/services/real-estate-icon.png";
+import cannabisIcon from "../assets/Images/services/cannabis-icon.png";
 
 const COINGECKO_KEY = import.meta.env.VITE_COINGECKO_KEY;
 
