@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 
 // Import all images
-import heroBg from "../assets/images/about/hero-bg.png";
-import teamMan from "../assets/images/about/team-man.png";
-import step1 from "../assets/images/about/step1.png";
-import step2 from "../assets/images/about/step2.png";
-import step3 from "../assets/images/about/step3.png";
-import subtlePattern from "../assets/images/about/subtle-pattern.png";
-import whatWeDoBg from "../assets/images/about/what-we-do-bg.png";
+import heroBg from "../assets/Images/about/hero-bg.png";
+import teamMan from "../assets/Images/about/team-man.png";
+import step1 from "../assets/Images/about/step1.png";
+import step2 from "../assets/Images/about/step2.png";
+import step3 from "../assets/Images/about/step3.png";
+import subtlePattern from "../assets/Images/about/subtle-pattern.png";
+import whatWeDoBg from "../assets/Images/about/what-we-do-bg.png";
 
 // New icons
-import highlightIcon from "../assets/images/about/highlight-icon.png";
-import specializedIcon from "../assets/images/about/specialized-icon.png";
-import purposeIcon from "../assets/images/about/purpose-icon.png";
+import highlightIcon from "../assets/Images/about/highlight-icon.png";
+import specializedIcon from "../assets/Images/about/specialized-icon.png";
+import purposeIcon from "../assets/Images/about/purpose-icon.png";
 
 const COINGECKO_KEY = import.meta.env.VITE_COINGECKO_KEY;
 
