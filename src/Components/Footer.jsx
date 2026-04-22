@@ -7,24 +7,24 @@ import tradenixPro from "../assets/Images/landingpage/tradenixpro.png";
 const Footer = () => {
   return (
     <footer className="bg-slate-950 text-gray-400">
-      <div className="container mx-auto px-6 pt-20 pb-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="container mx-auto px-6 pt-16 pb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Company Info with Logo */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-block mb-4">
+            <Link to="/" className="inline-block mb-6">
               <img
                 src={tradenixPro}
-                alt="Freedom Trade"
-                className="h-22 w-auto"
+                alt="TradeNixPro"
+                className="h-12 sm:h-14 w-auto"
               />
             </Link>
-            <p className="leading-relaxed text-lg max-w-md">
+            <p className="leading-relaxed text-base sm:text-lg max-w-md">
               A premier global trading and investment platform committed to
               excellence, transparency, and delivering consistent results for
               our clients worldwide.
             </p>
 
-            <div className="mt-8 flex gap-5 text-2xl">
+            <div className="mt-8 flex gap-6 text-3xl">
               <a href="#" className="hover:text-white transition">
                 📘
               </a>
@@ -45,7 +45,7 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-6 text-lg">
               Quick Links
             </h4>
-            <ul className="space-y-3 text-lg">
+            <ul className="space-y-3 text-base sm:text-lg">
               <li>
                 <Link to="/" className="hover:text-white transition">
                   Home
@@ -89,7 +89,7 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-6 text-lg">
               Our Services
             </h4>
-            <ul className="space-y-3 text-lg">
+            <ul className="space-y-3 text-base sm:text-lg">
               <li>Forex Trading</li>
               <li>Cryptocurrency Investments</li>
               <li>Stock & Commodities</li>
@@ -103,9 +103,8 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-6 text-lg">
               Contact Us
             </h4>
-            <div className="space-y-4 text-lg">
+            <div className="space-y-4 text-base sm:text-lg">
               <p>support@TradeNixPro.com</p>
-              {/* <p>+44 20 7946 0958</p> */}
               <p>London, United Kingdom</p>
             </div>
 
@@ -120,7 +119,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-800 py-6 text-center text-sm">
+      <div className="border-t border-slate-800 py-6 text-center text-sm px-6">
         <p>
           Trading involves substantial risk of loss and is not suitable for all
           investors.

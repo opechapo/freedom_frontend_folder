@@ -12,9 +12,6 @@ const Header = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Logo Size Control - Change this value to easily adjust size
-  const logoHeight = "h-34 md:h-26";
-
   const menuItems = [
     "Home",
     "About",
@@ -30,18 +27,18 @@ const Header = () => {
 
   return (
     <header className="bg-slate-900 shadow-lg border-b border-slate-700 sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-4 md:py-5 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img
             src={tradenixPro}
-            alt="Freedom Trade"
-            className={`${logoHeight} w-auto transition-all duration-200`}
+            alt="TradeNixPro"
+            className="h-10 sm:h-12 md:h-14 w-auto transition-all duration-200"
           />
         </Link>
 
-        {/* Desktop Nav - Bold Fonts */}
-        <nav className="hidden md:flex space-x-6">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
           {menuItems.map((item) => {
             if (item === "Buy crypto") {
               return (
@@ -50,7 +47,7 @@ const Header = () => {
                   href="https://www.blockchain.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-green-400 transition-colors text-lg font-bold"
+                  className="text-white hover:text-green-400 transition-colors text-base lg:text-lg font-bold"
                 >
                   {item}
                 </a>
@@ -74,7 +71,7 @@ const Header = () => {
                               ? "/license"
                               : `/#${item.toLowerCase().replace(/\s+/g, "-")}`
                 }
-                className="text-white hover:text-green-400 transition-colors text-lg font-bold"
+                className="text-white hover:text-green-400 transition-colors text-base lg:text-lg font-bold"
               >
                 {item}
               </Link>
@@ -83,30 +80,23 @@ const Header = () => {
         </nav>
 
         {/* Right Side */}
-        <div className="flex items-center gap-4">
-          {/* <button
-            onClick={toggle}
-            className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm hidden sm:block"
-          >
-            {dark ? "Light Mode" : "Dark Mode"}
-          </button> */}
-
+        <div className="flex items-center gap-3 sm:gap-4">
           {user ? (
-            <div className="flex items-center gap-4">
-              <span className="text-gray-300 font-medium hidden sm:inline">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <span className="text-gray-300 font-medium hidden sm:inline text-sm md:text-base">
                 Hi, {user.username}!
               </span>
               {location.pathname !== "/dashboard" ? (
                 <Link
                   to="/dashboard"
-                  className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-bold transition text-sm"
+                  className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-bold transition text-sm md:text-base"
                 >
                   Dashboard
                 </Link>
               ) : (
                 <button
                   onClick={logout}
-                  className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-medium transition text-sm"
+                  className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-medium transition text-sm md:text-base"
                 >
                   Logout
                 </button>
@@ -115,16 +105,16 @@ const Header = () => {
           ) : (
             <Link
               to="/login"
-              className="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-lg font-bold transition text-sm"
+              className="bg-green-500 hover:bg-green-600 text-white px-5 sm:px-6 py-2.5 rounded-lg font-bold transition text-sm md:text-base"
             >
               Get Started
             </Link>
           )}
 
-          {/* Hamburger - Black Color */}
+          {/* Hamburger Menu */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 text-white hover:text-gray-700"
+            className="md:hidden p-2 text-white hover:text-gray-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +126,7 @@ const Header = () => {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
@@ -146,14 +136,14 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
+        <div className="md:hidden fixed inset-0 bg-slate-950 z-[60] overflow-y-auto">
           <div className="container mx-auto px-6 py-6">
             <div className="flex justify-between items-center mb-10">
               <Link to="/" className="flex items-center" onClick={closeMenu}>
                 <img
                   src={tradenixPro}
-                  alt="Freedom Trade"
-                  className={`${logoHeight} w-auto`}
+                  alt="TradeNixPro"
+                  className="h-12 w-auto"
                 />
               </Link>
               <button
@@ -187,7 +177,7 @@ const Header = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={closeMenu}
-                      className="text-gray-300 hover:text-green-400 py-2"
+                      className="text-gray-300 hover:text-green-400 py-3 text-lg"
                     >
                       {item}
                     </a>
@@ -212,7 +202,7 @@ const Header = () => {
                                   : "#"
                     }
                     onClick={closeMenu}
-                    className="text-gray-300 hover:text-green-400 py-2"
+                    className="text-gray-300 hover:text-green-400 py-3 text-lg"
                   >
                     {item}
                   </Link>

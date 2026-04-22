@@ -166,11 +166,11 @@ const LandingPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center">
             {loading ? (
-              <p className="text-gray-400 text-xs md:text-sm whitespace-nowrap">
+              <p className="text-gray-400 text-xs sm:text-sm whitespace-nowrap">
                 Loading live prices...
               </p>
             ) : error ? (
-              <p className="text-red-400 text-xs md:text-sm whitespace-nowrap">
+              <p className="text-red-400 text-xs sm:text-sm whitespace-nowrap">
                 {error}
               </p>
             ) : (
@@ -178,7 +178,7 @@ const LandingPage = () => {
                 {marqueeCoins.map((coin, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-2 mx-6 text-xs md:text-sm text-white"
+                    className="flex items-center gap-2 mx-4 sm:mx-6 text-xs sm:text-sm text-white"
                   >
                     <span className="font-medium">{coin.name}</span>
                     <span className="font-bold text-green-400">
@@ -198,7 +198,7 @@ const LandingPage = () => {
                 ))}
               </div>
             )}
-            <span className="ml-6 text-xs text-gray-500 whitespace-nowrap">
+            <span className="ml-4 sm:ml-6 text-xs text-gray-500 whitespace-nowrap">
               Powered by CoinGecko
             </span>
           </div>
@@ -217,16 +217,16 @@ const LandingPage = () => {
         }
         .animate-marquee {
           display: flex;
-          animation: marquee 35s linear infinite;
+          animation: marquee 40s linear infinite;
         }
         .animate-marquee:hover {
           animation-play-state: paused;
         }
       `}</style>
 
-      {/* Hero Carousel */}
+      {/* Hero Carousel - Improved Responsive Heights */}
       <div
-        className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
+        className="relative h-[380px] sm:h-[450px] md:h-[550px] lg:h-[650px] xl:h-[700px] overflow-hidden"
         onMouseEnter={() => setHeroPaused(true)}
         onMouseLeave={() => setHeroPaused(false)}
       >
@@ -240,16 +240,16 @@ const LandingPage = () => {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-center justify-center">
-              <div className="text-center text-white px-4 max-w-4xl mx-auto">
-                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center px-4">
+              <div className="text-center text-white max-w-4xl mx-auto">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 leading-tight">
                   {slide.title}
                 </h1>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl mx-auto opacity-95 px-2">
                   {slide.subtitle}
                 </p>
                 <Link to="/register">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition transform hover:scale-105">
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 sm:px-10 rounded-xl text-base sm:text-lg transition transform hover:scale-105 shadow-xl">
                     {slide.cta}
                   </button>
                 </Link>
@@ -260,24 +260,24 @@ const LandingPage = () => {
       </div>
 
       {/* Connect with the Right Broker */}
-      <section className="py-16 lg:py-24 bg-gray-50">
+      <section className="py-12 sm:py-16 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-7xl mx-auto">
-            <div className="flex flex-col justify-center space-y-6 lg:space-y-8 text-center lg:text-left">
+            <div className="flex flex-col justify-center space-y-6 text-center lg:text-left">
               <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
                 ABOUT TRADENIXPRO
               </p>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 Connect with the right Broker.
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Whether you are experienced or a beginner, connecting with the
                 right broker is everything. Freedom Trade is a leading trade and
                 investment company with years of industry experience.
               </p>
               <Link
                 to="/about"
-                className="text-blue-600 font-medium hover:underline"
+                className="text-blue-600 font-medium hover:underline inline-block"
               >
                 Read More →
               </Link>
@@ -287,7 +287,7 @@ const LandingPage = () => {
               <img
                 src={TradeHand}
                 alt="Trading"
-                className="w-full max-w-lg rounded-2xl shadow-2xl"
+                className="w-full max-w-md sm:max-w-lg rounded-3xl shadow-2xl"
               />
             </div>
           </div>
@@ -295,80 +295,60 @@ const LandingPage = () => {
       </section>
 
       {/* OUR SERVICES SECTION */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">
             OUR SERVICES
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 max-w-5xl mx-auto leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 max-w-5xl mx-auto leading-tight">
             Bring to the table win-win survival strategies to ensure proactive
             domination.
           </h2>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mt-8 mb-16"></div>
+          <div className="w-24 h-1 bg-blue-600 mx-auto mt-8 mb-12"></div>
 
-          <div className="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-            <div className="group border-4 bg-gray-100 p-10 rounded-2xl">
-              <img
-                src={ServiceInvestment}
-                alt="Investment"
-                className="w-full h-64 object-cover rounded-2xl mb-6"
-              />
-              <h3 className="text-2xl font-bold mb-4">
-                Investment Consultancy
-              </h3>
-              <p className="text-gray-600 mb-6">
-                We do in-depth work on formulating clients' investment
-                strategies...
-              </p>
-              <Link
-                to="/services"
-                className="text-blue-600 font-semibold hover:underline"
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto">
+            {[
+              {
+                img: ServiceInvestment,
+                title: "Investment Consultancy",
+                desc: "We do in-depth work on formulating clients' investment strategies...",
+              },
+              {
+                img: ServiceCrypto,
+                title: "Cryptocurrency Investment",
+                desc: "Virtual or crypto currencies like Bitcoin and Ethereum...",
+              },
+              {
+                img: ServiceForex,
+                title: "Forex Trading",
+                desc: "The Forex market also referred to as the 'Currency market'...",
+              },
+            ].map((service, i) => (
+              <div
+                key={i}
+                className="group border-4 border-transparent hover:border-blue-100 bg-gray-50 hover:bg-white p-8 rounded-3xl transition-all duration-300"
               >
-                Read More →
-              </Link>
-            </div>
-
-            <div className="group border-4 bg-gray-100 p-10 rounded-2xl">
-              <img
-                src={ServiceCrypto}
-                alt="Crypto"
-                className="w-full h-64 object-cover rounded-2xl mb-6"
-              />
-              <h3 className="text-2xl font-bold mb-4">
-                Cryptocurrency Investment
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Virtual or crypto currencies like Bitcoin and Ethereum...
-              </p>
-              <Link
-                to="/services"
-                className="text-blue-600 font-semibold hover:underline"
-              >
-                Read More →
-              </Link>
-            </div>
-
-            <div className="group border-4 bg-gray-100 p-10 rounded-2xl">
-              <img
-                src={ServiceForex}
-                alt="Forex"
-                className="w-full h-64 object-cover rounded-2xl mb-6"
-              />
-              <h3 className="text-2xl font-bold mb-4">Forex Trading</h3>
-              <p className="text-gray-600 mb-6">
-                The Forex market also referred to as the "Currency market"...
-              </p>
-              <Link
-                to="/services"
-                className="text-blue-600 font-semibold hover:underline"
-              >
-                Read More →
-              </Link>
-            </div>
+                <img
+                  src={service.img}
+                  alt={service.title}
+                  className="w-full h-56 sm:h-64 object-cover rounded-2xl mb-6 shadow-md"
+                />
+                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {service.desc}
+                </p>
+                <Link
+                  to="/services"
+                  className="text-blue-600 font-semibold hover:underline"
+                >
+                  Read More →
+                </Link>
+              </div>
+            ))}
           </div>
 
           <Link to="/services">
-            <button className="mt-16 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg text-lg transition transform hover:scale-105 shadow-lg">
+            <button className="mt-12 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded-2xl text-lg transition transform hover:scale-105 shadow-lg">
               View All Services
             </button>
           </Link>
@@ -376,13 +356,13 @@ const LandingPage = () => {
       </section>
 
       {/* Live Trading Chart */}
-      <section className="py-16 bg-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h3 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-12">
             Live Market Chart
           </h3>
-          <div className="bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700 max-w-7xl mx-auto">
-            <div className="h-96 md:h-[600px]">
+          <div className="bg-slate-800 rounded-3xl shadow-2xl overflow-hidden border border-slate-700 max-w-7xl mx-auto">
+            <div className="h-[380px] sm:h-[500px] lg:h-[620px]">
               <TradingViewWidget />
             </div>
           </div>
@@ -390,18 +370,18 @@ const LandingPage = () => {
       </section>
 
       {/* How Does it Work */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-4">
             TRADENIXPRO
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-8">
             How Does it Work?
           </h2>
-          <div className="w-32 h-1 bg-blue-600 mx-auto mb-16"></div>
+          <div className="w-32 h-1 bg-blue-600 mx-auto mb-12"></div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="relative pt-[56.25%] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative pt-[56.25%] rounded-3xl overflow-hidden shadow-2xl">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
                 src="https://www.youtube.com/embed/x7msE3tx8QI"
@@ -412,7 +392,7 @@ const LandingPage = () => {
               ></iframe>
             </div>
             <Link to="/services">
-              <button className="mt-12 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg text-lg transition transform hover:scale-105 shadow-lg">
+              <button className="mt-10 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-12 rounded-2xl text-lg transition transform hover:scale-105 shadow-lg">
                 READ MORE
               </button>
             </Link>
@@ -421,13 +401,13 @@ const LandingPage = () => {
       </section>
 
       {/* Testimonials + Live Earnings */}
-      <section className="py-16 px-4 bg-slate-900">
+      <section className="py-12 sm:py-16 lg:py-20 bg-slate-900 px-4">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-100 mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-100 mb-10">
             What Our Customers Say
           </h2>
 
-          <div className="relative overflow-hidden rounded-xl bg-slate-800 p-8">
+          <div className="relative overflow-hidden rounded-3xl bg-slate-800 p-8 sm:p-12">
             <div
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${testSlide * 100}%)` }}
@@ -435,35 +415,38 @@ const LandingPage = () => {
               {testimonials.map((t, idx) => (
                 <div
                   key={idx}
-                  className="w-full flex-shrink-0 px-6 text-center"
+                  className="w-full flex-shrink-0 px-4 sm:px-8 text-center"
                 >
-                  <p className="text-lg md:text-xl text-gray-300 italic mb-8 leading-relaxed">
+                  <p className="text-lg sm:text-xl md:text-2xl text-gray-300 italic mb-8 leading-relaxed">
                     "{t.quote}"
                   </p>
-                  <p className="font-semibold text-green-400">- {t.author}</p>
+                  <p className="font-semibold text-green-400 text-lg">
+                    - {t.author}
+                  </p>
                 </div>
               ))}
             </div>
 
-            <div className="flex justify-center mt-8 space-x-3">
+            <div className="flex justify-center mt-10 space-x-3">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setTestSlide(i)}
-                  className={`w-2 h-2 rounded-full transition-colors ${i === testSlide ? "bg-green-400 w-8" : "bg-gray-600"}`}
+                  className={`w-3 h-3 rounded-full transition-all ${i === testSlide ? "bg-green-400 w-10" : "bg-gray-600"}`}
                 />
               ))}
             </div>
           </div>
 
+          {/* Live Earning Notification */}
           <div className="mt-12">
-            <div className="bg-green-900/30 border border-green-700/50 rounded-xl p-6 max-w-md mx-auto text-center shadow-2xl">
-              <div className="text-5xl mb-3">🎉</div>
-              <p className="text-sm text-gray-300">
+            <div className="bg-green-900/30 border border-green-700/50 rounded-3xl p-8 sm:p-10 max-w-md mx-auto text-center shadow-2xl">
+              <div className="text-5xl mb-4">🎉</div>
+              <p className="text-gray-300">
                 <strong className="text-green-400">{earning.name}</strong> from{" "}
                 <strong className="text-green-400">{earning.country}</strong>
               </p>
-              <p className="text-2xl md:text-3xl font-bold text-green-400 mt-3">
+              <p className="text-3xl sm:text-4xl font-bold text-green-400 mt-4">
                 just earned ${earning.amount.toLocaleString()}
               </p>
             </div>
