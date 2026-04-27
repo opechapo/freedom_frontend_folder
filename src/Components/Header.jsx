@@ -28,12 +28,12 @@ const Header = () => {
   return (
     <header className="bg-slate-900 shadow-lg border-b border-slate-700 sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 py-4 md:py-5 flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo - Made Bigger & Bolder on Mobile */}
         <Link to="/" className="flex items-center">
           <img
             src={tradenixPro}
             alt="TradeNixPro"
-            className="h-9 sm:h-10 md:h-12 w-auto transition-all duration-200"
+            className="h-11 sm:h-12 md:h-14 lg:h-16 w-auto transition-all duration-200 drop-shadow-md"
           />
         </Link>
 
@@ -144,7 +144,7 @@ const Header = () => {
                 <img
                   src={tradenixPro}
                   alt="TradeNixPro"
-                  className="h-12 w-auto"
+                  className="h-14 w-auto"
                 />
               </Link>
               <button
