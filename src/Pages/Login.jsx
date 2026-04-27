@@ -22,6 +22,7 @@ const Login = () => {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -33,7 +34,6 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-
     try {
       if (isAdmin) {
         const res = await API.post("/admin/login", { password: data.password });
@@ -45,7 +45,6 @@ const Login = () => {
           login: data.login,
           password: data.password,
         });
-
         authLogin(res.data.user, res.data.token);
         toast.success("Login successful!");
         navigate("/dashboard", { replace: true });
@@ -82,23 +81,17 @@ const Login = () => {
             >
               User Login
             </button>
-            {/* <button
-              onClick={() => setIsAdmin(true)}
-              className={`px-6 py-2 rounded-full font-medium transition ${isAdmin ? "bg-red-600 text-white" : "bg-slate-200 dark:bg-slate-700"}`}
-            >
-              Admin Login
-            </button> */}
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {!isAdmin && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Email or Username
                 </label>
                 <input
                   {...register("login")}
-                  className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-slate-700 dark:border-slate-600"
+                  className="w-full px-4 py-3 border border-gray-300 dark:bg-slate-700 dark:border-slate-600 rounded-lg focus:outline-none focus:border-green-500"
                   placeholder="you@example.com"
                 />
                 {errors.login && (
@@ -110,15 +103,68 @@ const Login = () => {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {isAdmin ? "Admin Password" : "Password"}
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Password
               </label>
-              <input
-                {...register("password")}
-                type="password"
-                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg dark:bg-slate-700 dark:border-slate-600"
-                placeholder="••••••••"
-              />
+              <div className="relative">
+                <input
+                  {...register("password")}
+                  type={showPassword ? "text" : "password"}
+                  className="w-full px-4 py-3 border border-gray-300 dark:bg-slate-700 dark:border-slate-600 rounded-lg focus:outline-none focus:border-green-500 pr-12"
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors"
+                >
+                  {showPassword ? (
+                    // Closed Eye SVG
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908l3.42 3.42m-3.42-3.42l3.42-3.42"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 3l18 18"
+                      />
+                    </svg>
+                  ) : (
+                    // Open Eye SVG
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5 16.477 5 20.268 7.943 21.542 12 20.268 16.057 16.477 19 12 19 7.523 19 3.732 16.057 2.458 12z"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">
                   {errors.password.message}
