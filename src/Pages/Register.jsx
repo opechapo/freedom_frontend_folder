@@ -18,6 +18,7 @@ const countries = [
   "Brazil",
   "Japan",
 ];
+
 const currencies = ["USD", "EUR", "GBP", "NGN", "INR", "CAD", "AUD", "JPY"];
 
 const schema = z
@@ -30,14 +31,22 @@ const schema = z
         /^[a-zA-Z0-9_]+$/,
         "Only letters, numbers, and underscore allowed",
       ),
+
     email: z.string().email("Invalid email address"),
+
     phone: z
       .string()
       .min(8, "Phone number too short")
       .regex(/^[\d\s\-\+\(\)]+$/, "Invalid phone number"),
-    gender: z.enum(["Male", "Female", "Other"]),
+
+    gender: z.enum(["Male", "Female", "Other"], {
+      errorMap: () => ({ message: "Please select your gender" }),
+    }),
+
     country: z.string().min(1, "Please select your country"),
+
     currency: z.string().min(1, "Please select preferred currency"),
+
     password: z
       .string()
       .min(8, "Password must be at least 8 characters")
@@ -45,6 +54,7 @@ const schema = z
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
         "Password must contain uppercase, lowercase, and number",
       ),
+
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -103,9 +113,128 @@ const Register = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
-              {/* ... Other fields remain the same ... */}
+              {/* Username */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Username
+                </label>
+                <input
+                  {...register("username")}
+                  type="text"
+                  placeholder="johndoe123"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:outline-none focus:border-green-500"
+                />
+                {errors.username && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.username.message}
+                  </p>
+                )}
+              </div>
 
-              {/* Password Field */}
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Email Address
+                </label>
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:outline-none focus:border-green-500"
+                />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  {...register("phone")}
+                  type="tel"
+                  placeholder="+1 (555) 000-0000"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:outline-none focus:border-green-500"
+                />
+                {errors.phone && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Gender */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Gender
+                </label>
+                <select
+                  {...register("gender")}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:outline-none focus:border-green-500"
+                >
+                  <option value="">Select gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                {errors.gender && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.gender.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Country */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Country
+                </label>
+                <select
+                  {...register("country")}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:outline-none focus:border-green-500"
+                >
+                  <option value="">Select country</option>
+                  {countries.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+                {errors.country && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.country.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Currency */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Preferred Currency
+                </label>
+                <select
+                  {...register("currency")}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 focus:outline-none focus:border-green-500"
+                >
+                  <option value="">Select currency</option>
+                  {currencies.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+                {errors.currency && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.currency.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Password */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Password
@@ -174,7 +303,7 @@ const Register = () => {
                 )}
               </div>
 
-              {/* Confirm Password Field */}
+              {/* Confirm Password */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Confirm Password
