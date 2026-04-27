@@ -7,15 +7,15 @@ import tradenixPro from "../assets/Images/landingpage/tradenixpro.png";
 const Footer = () => {
   return (
     <footer className="bg-slate-950 text-gray-400">
-      <div className="container mx-auto px-6 pt-16 pb-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+      <div className="container mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-8">
           {/* Company Info with Logo */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-6">
               <img
                 src={tradenixPro}
                 alt="TradeNixPro"
-                className="h-12 sm:h-14 w-auto"
+                className="h-10 sm:h-12 md:h-14 w-auto"
               />
             </Link>
             <p className="leading-relaxed text-base sm:text-lg max-w-md">
@@ -24,17 +24,17 @@ const Footer = () => {
               our clients worldwide.
             </p>
 
-            <div className="mt-8 flex gap-6 text-3xl">
-              <a href="#" className="hover:text-white transition">
+            <div className="mt-8 flex gap-5 sm:gap-6 text-2xl sm:text-3xl">
+              <a href="#" className="hover:text-white transition-colors">
                 📘
               </a>
-              <a href="#" className="hover:text-white transition">
+              <a href="#" className="hover:text-white transition-colors">
                 𝕏
               </a>
-              <a href="#" className="hover:text-white transition">
+              <a href="#" className="hover:text-white transition-colors">
                 📷
               </a>
-              <a href="#" className="hover:text-white transition">
+              <a href="#" className="hover:text-white transition-colors">
                 🔗
               </a>
             </div>
@@ -42,17 +42,20 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">
+            <h4 className="text-white font-semibold mb-5 text-lg">
               Quick Links
             </h4>
             <ul className="space-y-3 text-base sm:text-lg">
               <li>
-                <Link to="/" className="hover:text-white transition">
+                <Link to="/" className="hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-white transition">
+                <Link
+                  to="/about"
+                  className="hover:text-white transition-colors"
+                >
                   About Us
                 </Link>
               </li>
@@ -61,23 +64,29 @@ const Footer = () => {
                   href="https://www.blockchain.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition"
+                  className="hover:text-white transition-colors"
                 >
                   Buy Crypto
                 </a>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition">
+                <Link
+                  to="/services"
+                  className="hover:text-white transition-colors"
+                >
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="hover:text-white transition">
+                <Link to="/faq" className="hover:text-white transition-colors">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-white transition">
+                <Link
+                  to="/contact"
+                  className="hover:text-white transition-colors"
+                >
                   Contact
                 </Link>
               </li>
@@ -86,7 +95,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">
+            <h4 className="text-white font-semibold mb-5 text-lg">
               Our Services
             </h4>
             <ul className="space-y-3 text-base sm:text-lg">
@@ -100,7 +109,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">
+            <h4 className="text-white font-semibold mb-5 text-lg">
               Contact Us
             </h4>
             <div className="space-y-4 text-base sm:text-lg">
@@ -119,8 +128,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-slate-800 py-6 text-center text-sm px-6">
-        <p>
+      <div className="border-t border-slate-800 py-6 text-center text-sm px-4 sm:px-6">
+        <p className="max-w-2xl mx-auto">
           Trading involves substantial risk of loss and is not suitable for all
           investors.
         </p>

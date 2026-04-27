@@ -198,10 +198,10 @@ const Contact = () => {
               </h3>
               <div className="space-y-6 text-lg">
                 <p>
-                  <strong>Email:</strong> support@freedomtrade.com
+                  <strong>Email:</strong> support@TradeNixPro.com
                 </p>
                 <p>
-                  <strong>Phone:</strong> +44 20 7946 0958
+                  <strong>Phone:</strong> +44 20 7946 ****
                 </p>
                 <p>
                   <strong>Address:</strong> 123 Trading Street, London, United

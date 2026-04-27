@@ -163,7 +163,7 @@ const LandingPage = () => {
     <>
       {/* CoinGecko Live Ticker */}
       <section className="bg-gradient-to-r from-slate-900 to-slate-800 py-3 overflow-hidden border-b border-slate-700">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-3 sm:px-4">
           <div className="flex items-center">
             {loading ? (
               <p className="text-gray-400 text-xs sm:text-sm whitespace-nowrap">
@@ -224,9 +224,9 @@ const LandingPage = () => {
         }
       `}</style>
 
-      {/* Hero Carousel - Improved Responsive Heights */}
+      {/* Hero Carousel - Fully Responsive */}
       <div
-        className="relative h-[380px] sm:h-[450px] md:h-[550px] lg:h-[650px] xl:h-[700px] overflow-hidden"
+        className="relative h-[420px] sm:h-[500px] md:h-[580px] lg:h-[650px] xl:h-[720px] overflow-hidden"
         onMouseEnter={() => setHeroPaused(true)}
         onMouseLeave={() => setHeroPaused(false)}
       >
@@ -241,15 +241,15 @@ const LandingPage = () => {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center px-4">
-              <div className="text-center text-white max-w-4xl mx-auto">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 leading-tight">
+              <div className="text-center text-white max-w-4xl mx-auto px-4">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 leading-[1.1]">
                   {slide.title}
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl mx-auto opacity-95 px-2">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 max-w-2xl mx-auto">
                   {slide.subtitle}
                 </p>
                 <Link to="/register">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 sm:px-10 rounded-xl text-base sm:text-lg transition transform hover:scale-105 shadow-xl">
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 sm:px-12 rounded-xl text-base sm:text-lg transition transform hover:scale-105 shadow-xl w-full sm:w-auto">
                     {slide.cta}
                   </button>
                 </Link>
@@ -306,7 +306,7 @@ const LandingPage = () => {
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mt-8 mb-12"></div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
             {[
               {
                 img: ServiceInvestment,
@@ -326,12 +326,12 @@ const LandingPage = () => {
             ].map((service, i) => (
               <div
                 key={i}
-                className="group border-4 border-transparent hover:border-blue-100 bg-gray-50 hover:bg-white p-8 rounded-3xl transition-all duration-300"
+                className="group border-4 border-transparent hover:border-blue-100 bg-gray-50 hover:bg-white p-6 sm:p-8 rounded-3xl transition-all duration-300"
               >
                 <img
                   src={service.img}
                   alt={service.title}
-                  className="w-full h-56 sm:h-64 object-cover rounded-2xl mb-6 shadow-md"
+                  className="w-full h-52 sm:h-64 object-cover rounded-2xl mb-6 shadow-md"
                 />
                 <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -362,7 +362,7 @@ const LandingPage = () => {
             Live Market Chart
           </h3>
           <div className="bg-slate-800 rounded-3xl shadow-2xl overflow-hidden border border-slate-700 max-w-7xl mx-auto">
-            <div className="h-[380px] sm:h-[500px] lg:h-[620px]">
+            <div className="h-[320px] sm:h-[420px] md:h-[520px] lg:h-[620px]">
               <TradingViewWidget />
             </div>
           </div>

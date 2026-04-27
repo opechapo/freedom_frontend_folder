@@ -16,6 +16,7 @@ const Dashboard = () => {
   const chartRef = useRef(null);
 
   const [activeMenu, setActiveMenu] = useState("Profile");
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Mobile sidebar
   const [showDepositModal, setShowDepositModal] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState("USDT");
 
@@ -41,7 +42,7 @@ const Dashboard = () => {
   const [kycSubmitted, setKycSubmitted] = useState(false);
   const [uploading, setUploading] = useState(false);
 
-  // Real Account Balance from Backend
+  // Real Account Balance
   const [accountBalance, setAccountBalance] = useState(0);
   const [totalDeposited, setTotalDeposited] = useState(0);
 
@@ -157,26 +158,29 @@ const Dashboard = () => {
 
     return (
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8">Welcome {user.username}!</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold mb-8">
+          Welcome {user.username}!
+        </h2>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {/* Account Balance - Real Data */}
-          <div className="bg-slate-800 rounded-2xl p-6 flex items-center justify-between shadow-xl">
+        {/* Stats Grid - Fully Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
+          {/* Account Balance */}
+          <div className="bg-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl">
             <div>
               <p className="text-slate-400">Account Balance</p>
-              <p className="text-4xl font-bold mt-2">
+              <p className="text-3xl sm:text-4xl font-bold mt-2">
                 ${accountBalance.toLocaleString()}
               </p>
-              <button
-                onClick={() => setShowDepositModal(true)}
-                className="mt-4 bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full text-sm font-medium transition"
-              >
-                Deposit Funds
-              </button>
             </div>
+            <button
+              onClick={() => setShowDepositModal(true)}
+              className="mt-6 bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-xl text-sm font-medium transition w-full sm:w-auto"
+            >
+              Deposit Funds
+            </button>
           </div>
 
+          {/* Signal Strength */}
           <div className="bg-slate-800 rounded-2xl p-6 shadow-xl">
             <div className="flex items-center gap-3 mb-4">
               <span className="text-2xl">⭐</span>
@@ -188,13 +192,11 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="w-full bg-slate-700 rounded-full h-3">
-              <div
-                className="bg-green-500 h-3 rounded-full"
-                style={{ width: "100%" }}
-              ></div>
+              <div className="bg-green-500 h-3 rounded-full w-full"></div>
             </div>
           </div>
 
+          {/* Earned Profits */}
           <div className="bg-slate-800 rounded-2xl p-6 shadow-xl">
             <div className="flex justify-between items-start mb-4">
               <div>
@@ -209,13 +211,14 @@ const Dashboard = () => {
             <p className="text-right text-cyan-400 mt-2 text-sm">In return</p>
           </div>
 
-          <div className="bg-slate-800 rounded-2xl p-6 shadow-xl">
+          {/* Amount Deposited */}
+          <div className="bg-slate-800 rounded-2xl p-6 shadow-xl sm:col-span-2 lg:col-span-1">
             <p className="font-medium mb-4">Amount Deposited</p>
             <div className="flex gap-2 justify-center">
               {[50, 70, 60, 90, 40].map((h, i) => (
                 <div
                   key={i}
-                  className="w-12 bg-gradient-to-t from-purple-600 to-purple-400 rounded-t"
+                  className="w-10 sm:w-12 bg-gradient-to-t from-purple-600 to-purple-400 rounded-t"
                   style={{ height: `${h}px` }}
                 ></div>
               ))}
@@ -226,64 +229,39 @@ const Dashboard = () => {
             <p className="text-center text-green-400 text-sm">Deposits</p>
           </div>
 
-          <div className="bg-slate-800 rounded-2xl p-6 shadow-xl">
-            <p className="font-medium mb-4">Your Plan</p>
-            <p className="text-2xl font-bold text-center py-8 text-slate-500">
-              No Plan
-            </p>
-            <button className="w-full bg-green-600 hover:bg-green-700 py-2 rounded-lg text-sm font-medium">
-              Earning Plan
-            </button>
-          </div>
-
-          <div className="bg-slate-800 rounded-2xl p-6 shadow-xl">
-            <p className="font-medium mb-4">Bonus</p>
-            <p className="text-4xl font-bold text-center">$0.00</p>
-            <button className="w-full mt-4 bg-gray-700 py-2 rounded-lg text-sm">
-              Here Is The Trading Bonus Earned
-            </button>
-          </div>
-
-          <div className="bg-slate-800 rounded-2xl p-6 shadow-xl flex items-center justify-between">
-            <div>
-              <p className="text-red-500 text-2xl mb-2">Bitcoin</p>
-              <p className="text-sm text-slate-400">BTC Equivalent</p>
-              <p className="text-xl font-bold">0.000 BTC</p>
-              <p className="text-xs text-slate-400">Return In Crypto</p>
+          {/* Other Cards */}
+          {[
+            { title: "Your Plan", value: "No Plan", btn: "Earning Plan" },
+            { title: "Bonus", value: "$0.00", btn: "Trading Bonus" },
+            { title: "Bitcoin", value: "0.000 BTC" },
+            { title: "Ethereum", value: "0.000 ETH" },
+            {
+              title: "Booster",
+              value: "No Booster Active",
+              btn: "Multiply Return Rate",
+            },
+          ].map((item, i) => (
+            <div key={i} className="bg-slate-800 rounded-2xl p-6 shadow-xl">
+              <p className="font-medium mb-4">{item.title}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-center py-6 text-slate-400">
+                {item.value}
+              </p>
+              {item.btn && (
+                <button className="w-full bg-green-600 hover:bg-green-700 py-3 rounded-xl text-sm font-medium transition">
+                  {item.btn}
+                </button>
+              )}
             </div>
-          </div>
-
-          <div className="bg-slate-800 rounded-2xl p-6 shadow-xl flex items-center justify-between">
-            <div>
-              <p className="text-red-500 text-2xl mb-2">Ethereum</p>
-              <p className="text-sm text-slate-400">ETH Equivalent</p>
-              <p className="text-xl font-bold">0.000 ETH</p>
-              <p className="text-xs text-slate-400">Return In Crypto</p>
-            </div>
-          </div>
-
-          <div className="bg-slate-800 rounded-2xl p-6 shadow-xl">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-4xl">❤️</span>
-              <div>
-                <p className="font-medium">Booster</p>
-                <p className="text-sm text-slate-400">Current Boost Rate</p>
-              </div>
-            </div>
-            <p className="text-xl font-bold">Booster: No Booster Active</p>
-            <button className="w-full mt-4 bg-green-600 hover:bg-green-700 py-2 rounded-lg text-sm font-medium">
-              Multiply Return Rate
-            </button>
-          </div>
+          ))}
         </div>
 
         {/* Live Trading Chart */}
-        <div ref={chartRef} className="mt-12">
+        <div ref={chartRef} className="mt-8">
           <h3 className="text-2xl font-bold mb-6 text-cyan-400">
             Live Market Chart
           </h3>
           <div className="bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
-            <div className="h-96 md:h-[600px]">
+            <div className="h-[340px] sm:h-[420px] md:h-[520px] lg:h-[600px]">
               <TradingViewWidget />
             </div>
           </div>
@@ -295,7 +273,7 @@ const Dashboard = () => {
   const renderSecurityPage = () => (
     <div className="max-w-4xl mx-auto">
       <h2 className="text-3xl font-bold mb-8">Password and Security</h2>
-      <div className="bg-slate-800 rounded-2xl p-8 shadow-xl">
+      <div className="bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
         <h3 className="text-xl font-semibold mb-6">Change Password</h3>
         <form onSubmit={handleChangePassword} className="space-y-6">
           {[
@@ -331,13 +309,13 @@ const Dashboard = () => {
                   value={value}
                   onChange={(e) => setter(e.target.value)}
                   required
-                  className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500 pr-12"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 pr-12"
                   placeholder={`Enter ${label.toLowerCase()}`}
                 />
                 <button
                   type="button"
                   onClick={() => setShow(!show)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xl transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xl"
                 >
                   {show ? "🙈" : "👁️"}
                 </button>
@@ -348,7 +326,7 @@ const Dashboard = () => {
           <button
             type="submit"
             disabled={loadingBtn}
-            className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 py-3.5 rounded-lg font-medium text-white transition-all mt-4"
+            className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-800 py-4 rounded-xl font-medium text-white transition-all mt-4"
           >
             {loadingBtn ? "Changing Password..." : "Change Password"}
           </button>
@@ -361,39 +339,27 @@ const Dashboard = () => {
     <div className="max-w-5xl mx-auto">
       <h2 className="text-3xl font-bold mb-8">Deposit Methods</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div
-          className="bg-slate-800 rounded-2xl p-8 text-center shadow-xl cursor-pointer hover:scale-105 transition-all duration-300"
-          onClick={() => {
-            setSelectedMethod("USDT");
-            setShowDepositModal(true);
-          }}
-        >
-          <div className="text-5xl mb-4">💵</div>
-          <h3 className="text-2xl font-bold mb-3">USDT</h3>
-          <p className="text-slate-400 mb-8">
-            Quickly fund your account using this deposit method!
-          </p>
-          <button className="bg-purple-600 hover:bg-purple-700 px-12 py-3 rounded-lg font-medium transition-all">
-            Show
-          </button>
-        </div>
-
-        <div
-          className="bg-slate-800 rounded-2xl p-8 text-center shadow-xl cursor-pointer hover:scale-105 transition-all duration-300"
-          onClick={() => {
-            setSelectedMethod("BTC");
-            setShowDepositModal(true);
-          }}
-        >
-          <div className="text-5xl mb-4">₿</div>
-          <h3 className="text-2xl font-bold mb-3">BTC</h3>
-          <p className="text-slate-400 mb-8">
-            Quickly fund your account using this deposit method!
-          </p>
-          <button className="bg-purple-600 hover:bg-purple-700 px-12 py-3 rounded-lg font-medium transition-all">
-            Show
-          </button>
-        </div>
+        {["USDT", "BTC"].map((method) => (
+          <div
+            key={method}
+            className="bg-slate-800 rounded-2xl p-8 text-center shadow-xl cursor-pointer hover:scale-105 transition-all duration-300"
+            onClick={() => {
+              setSelectedMethod(method);
+              setShowDepositModal(true);
+            }}
+          >
+            <div className="text-5xl mb-4">
+              {method === "USDT" ? "💵" : "₿"}
+            </div>
+            <h3 className="text-2xl font-bold mb-3">{method}</h3>
+            <p className="text-slate-400 mb-8">
+              Quickly fund your account using this deposit method!
+            </p>
+            <button className="bg-purple-600 hover:bg-purple-700 px-12 py-3 rounded-xl font-medium transition-all w-full sm:w-auto">
+              Show Details
+            </button>
+          </div>
+        ))}
       </div>
 
       <DepositModal
@@ -408,7 +374,8 @@ const Dashboard = () => {
     <div className="max-w-4xl mx-auto">
       <h2 className="text-3xl font-bold mb-8">Withdrawals / KYC</h2>
       {!kycSubmitted ? (
-        <div className="bg-slate-800 rounded-2xl p-8 shadow-xl">
+        <div className="bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
+          {/* KYC Form - Same as before */}
           <div className="flex items-center gap-3 mb-6">
             <span className="text-3xl">🪪</span>
             <h3 className="text-xl font-semibold">KYC Verification</h3>
@@ -418,13 +385,14 @@ const Dashboard = () => {
           </p>
 
           <form onSubmit={handleKycSubmit} className="space-y-8">
+            {/* ... KYC form fields (same as original) ... */}
             <div>
               <label className="block text-sm text-slate-400 mb-3">
                 Select ID Type
               </label>
-              <select className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500">
+              <select className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500">
                 <option>Passport</option>
-                <option>Driver&apos;s License</option>
+                <option>Driver's License</option>
                 <option>National ID</option>
                 <option>Others</option>
               </select>
@@ -475,14 +443,14 @@ const Dashboard = () => {
             <button
               type="submit"
               disabled={uploading || !frontFile || !backFile}
-              className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-slate-600 py-4 rounded-lg font-medium text-lg transition"
+              className="w-full bg-cyan-500 hover:bg-cyan-600 disabled:bg-slate-600 py-4 rounded-xl font-medium text-lg transition"
             >
               {uploading ? "Uploading..." : "Verify My Account"}
             </button>
           </form>
         </div>
       ) : (
-        <div className="bg-slate-800 rounded-2xl p-12 shadow-xl text-center">
+        <div className="bg-slate-800 rounded-2xl p-8 sm:p-12 shadow-xl text-center">
           <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500 px-6 py-3 rounded-full mb-10 text-sm">
             ✅ Your document was successfully uploaded and is being verified
           </div>
@@ -522,9 +490,8 @@ const Dashboard = () => {
         toast.error("Please enter a valid wallet address and amount");
         return;
       }
-
       toast.success(
-        `Withdrawal request of $${withdrawAmount} to ${walletAddress} has been submitted for admin review!`,
+        `Withdrawal request of $${withdrawAmount} to ${walletAddress} has been submitted!`,
       );
       setWalletAddress("");
       setWithdrawAmount("");
@@ -532,19 +499,19 @@ const Dashboard = () => {
     };
 
     return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80">
-        <div className="bg-slate-800 rounded-3xl p-8 w-full max-w-lg mx-4 shadow-2xl">
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4">
+        <div className="bg-slate-800 rounded-3xl p-6 sm:p-8 w-full max-w-lg mx-auto shadow-2xl">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold">Withdraw Funds</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold">Withdraw Funds</h2>
             <button
               onClick={onClose}
-              className="text-4xl leading-none text-slate-400 hover:text-white transition-colors"
+              className="text-4xl leading-none text-slate-400 hover:text-white"
             >
               ×
             </button>
           </div>
 
-          <form onSubmit={handleSubmitWithdrawal} className="space-y-8">
+          <form onSubmit={handleSubmitWithdrawal} className="space-y-6">
             <div>
               <label className="block text-sm text-slate-400 mb-2">
                 Crypto Wallet Address
@@ -587,24 +554,24 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white flex">
-      {/* LEFT SIDEBAR */}
-      <aside className="w-64 bg-slate-800 border-r border-slate-700 flex flex-col">
-        <div className="p-6 border-b border-slate-700">
+    <div className="min-h-screen bg-slate-900 text-white flex flex-col md:flex-row">
+      {/* LEFT SIDEBAR - Mobile Friendly */}
+      <aside
+        className={`fixed md:static inset-y-0 left-0 z-50 w-72 bg-slate-800 border-r border-slate-700 flex flex-col transform transition-transform duration-300 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        }`}
+      >
+        <div className="p-6 border-b border-slate-700 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-cyan-400">TRADENIXPRO</h1>
-          <p className="text-xs text-slate-500 mt-4">
-            {new Date().toLocaleString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            })}{" "}
-            GMT+1
-          </p>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="md:hidden text-3xl leading-none"
+          >
+            ×
+          </button>
         </div>
 
-        <nav className="flex-1 px-4 pt-6">
+        <nav className="flex-1 px-4 pt-6 overflow-y-auto">
           {[
             { name: "Profile", icon: "👤" },
             { name: "Deposit", icon: "💵" },
@@ -626,42 +593,55 @@ const Dashboard = () => {
                 if (item.name === "Live Trade") {
                   setActiveMenu("Profile");
                   setTimeout(scrollToChart, 300);
+                  setSidebarOpen(false);
                   return;
                 }
                 setActiveMenu(item.name);
+                setSidebarOpen(false);
               }}
-              className={`w-full text-left px-4 py-3 rounded-lg mb-1 flex items-center gap-3 transition-all ${
+              className={`w-full text-left px-4 py-3.5 rounded-xl mb-1 flex items-center gap-3 transition-all text-base ${
                 activeMenu === item.name
                   ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium"
                   : "hover:bg-slate-700 text-slate-300"
               }`}
             >
-              <span className="text-lg">{item.icon}</span>
+              <span className="text-xl">{item.icon}</span>
               <span>{item.name}</span>
             </button>
           ))}
         </nav>
       </aside>
 
-      {/* MAIN CONTENT */}
-      <main className="flex-1 p-8 overflow-y-auto">
-        {activeMenu === "Profile" && renderProfilePage()}
-        {activeMenu === "Security" && renderSecurityPage()}
-        {(activeMenu === "Deposit" || activeMenu === "Transaction Form") &&
-          renderDepositPage()}
-        {(activeMenu === "Withdrawals" || activeMenu === "KYC") &&
-          renderWithdrawalsPage()}
+      {/* MAIN CONTENT AREA */}
+      <main className="flex-1 overflow-y-auto">
+        {/* Mobile Top Bar */}
+        <div className="md:hidden bg-slate-800 border-b border-slate-700 p-4 flex items-center justify-between sticky top-0 z-40">
+          <button onClick={() => setSidebarOpen(true)} className="text-3xl p-1">
+            ☰
+          </button>
+          <h1 className="text-xl font-bold text-cyan-400">Dashboard</h1>
+          <div className="w-8"></div>
+        </div>
 
-        <DepositModal
-          isOpen={showDepositModal}
-          onClose={() => setShowDepositModal(false)}
-          method={selectedMethod}
-        />
+        <div className="p-4 sm:p-6 md:p-8">
+          {activeMenu === "Profile" && renderProfilePage()}
+          {activeMenu === "Security" && renderSecurityPage()}
+          {(activeMenu === "Deposit" || activeMenu === "Transaction Form") &&
+            renderDepositPage()}
+          {(activeMenu === "Withdrawals" || activeMenu === "KYC") &&
+            renderWithdrawalsPage()}
 
-        <WithdrawalModalComponent
-          isOpen={showWithdrawalModal}
-          onClose={() => setShowWithdrawalModal(false)}
-        />
+          <DepositModal
+            isOpen={showDepositModal}
+            onClose={() => setShowDepositModal(false)}
+            method={selectedMethod}
+          />
+
+          <WithdrawalModalComponent
+            isOpen={showWithdrawalModal}
+            onClose={() => setShowWithdrawalModal(false)}
+          />
+        </div>
       </main>
     </div>
   );

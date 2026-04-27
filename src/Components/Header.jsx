@@ -33,12 +33,12 @@ const Header = () => {
           <img
             src={tradenixPro}
             alt="TradeNixPro"
-            className="h-10 sm:h-12 md:h-14 w-auto transition-all duration-200"
+            className="h-9 sm:h-10 md:h-12 w-auto transition-all duration-200"
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
           {menuItems.map((item) => {
             if (item === "Buy crypto") {
               return (
@@ -80,7 +80,7 @@ const Header = () => {
         </nav>
 
         {/* Right Side */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {user ? (
             <div className="flex items-center gap-3 sm:gap-4">
               <span className="text-gray-300 font-medium hidden sm:inline text-sm md:text-base">
@@ -89,14 +89,14 @@ const Header = () => {
               {location.pathname !== "/dashboard" ? (
                 <Link
                   to="/dashboard"
-                  className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-bold transition text-sm md:text-base"
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 sm:px-5 py-2.5 rounded-lg font-bold transition text-sm md:text-base whitespace-nowrap"
                 >
                   Dashboard
                 </Link>
               ) : (
                 <button
                   onClick={logout}
-                  className="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-medium transition text-sm md:text-base"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-5 py-2.5 rounded-lg font-medium transition text-sm md:text-base whitespace-nowrap"
                 >
                   Logout
                 </button>
@@ -105,7 +105,7 @@ const Header = () => {
           ) : (
             <Link
               to="/login"
-              className="bg-green-500 hover:bg-green-600 text-white px-5 sm:px-6 py-2.5 rounded-lg font-bold transition text-sm md:text-base"
+              className="bg-green-500 hover:bg-green-600 text-white px-5 sm:px-6 py-2.5 rounded-lg font-bold transition text-sm md:text-base whitespace-nowrap"
             >
               Get Started
             </Link>
@@ -114,7 +114,8 @@ const Header = () => {
           {/* Hamburger Menu */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 text-white hover:text-gray-300"
+            className="md:hidden p-2 text-white hover:text-gray-300 transition-colors"
+            aria-label="Toggle menu"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -148,26 +149,13 @@ const Header = () => {
               </Link>
               <button
                 onClick={closeMenu}
-                className="text-gray-300 hover:text-white"
+                className="text-gray-300 hover:text-white text-4xl leading-none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M6 18L18 6M6 6h12v12"
-                  />
-                </svg>
+                ×
               </button>
             </div>
 
-            <div className="flex flex-col space-y-8 text-xl">
+            <div className="flex flex-col space-y-6 text-xl">
               {menuItems.map((item) => {
                 if (item === "Buy crypto") {
                   return (
@@ -177,7 +165,7 @@ const Header = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={closeMenu}
-                      className="text-gray-300 hover:text-green-400 py-3 text-lg"
+                      className="text-gray-300 hover:text-green-400 py-4 text-lg border-b border-slate-800 last:border-none"
                     >
                       {item}
                     </a>
@@ -202,7 +190,7 @@ const Header = () => {
                                   : "#"
                     }
                     onClick={closeMenu}
-                    className="text-gray-300 hover:text-green-400 py-3 text-lg"
+                    className="text-gray-300 hover:text-green-400 py-4 text-lg border-b border-slate-800 last:border-none"
                   >
                     {item}
                   </Link>
