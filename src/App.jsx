@@ -61,15 +61,13 @@ function App() {
             theme="dark"
             size="compact"
             accentColor="#1E88E5"
-            start-button-text="Start"
-            voice-show-transcript="true"
-            end-button-text="End Call"
-            title="Talk with TradeNixPro AI"
-            chat-first-message="Hey, How can I help you today?"
+            ctaTitle="" // Empty = hides text
+            ctaSubtitle="" // Empty = hides subtitle
+            startButtonText="📈" // Best icon for trading platform
+            title="TradeNixPro AI"
+            chatFirstMessage="Hey, How can I help you today?"
             chatPlaceholder="Ask about Trading or book a call..."
             voiceShowTranscript={true}
-            ctaTitle="TradeNixPro AI ChatBox"
-            ctaSubtitle="24/7 Trading Support"
           />
 
           <ToastContainer
