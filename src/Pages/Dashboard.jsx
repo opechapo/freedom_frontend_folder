@@ -562,7 +562,7 @@ const Dashboard = () => {
   const renderWithdrawalsPage = () => (
     <div className="max-w-4xl mx-auto">
       <h2 className="text-3xl font-bold mb-8">Withdrawals / KYC</h2>
-      {/* Your existing KYC page remains unchanged */}
+      {/* Your existing KYC page remains*/}
       {!kycSubmitted ? (
         <div className="bg-slate-900 border border-slate-700 rounded-2xl p-10 shadow-xl">
           <div className="flex items-center gap-3 mb-6">
